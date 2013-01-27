@@ -88,4 +88,21 @@ final class Binary
 	{
 		return bin2hex($bin);
 	}
+
+	/**
+	 * @relates Git
+	 * @brief Check if blob is binary if so can't be rendered as plain text
+	 *
+	 * @param $blob
+	 $ $retun boolean
+	 */
+	static public function is_binary($blob) 
+	{
+		if (preg_match('/[\x00-\x08\x0B\x0E-\x1A\x1C-\x1F]/', substr($a, 0, 512)))
+		{
+			return true;
+		}
+
+		return false;
+	}
 }
