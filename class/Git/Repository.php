@@ -22,9 +22,12 @@ namespace Patchwork\Git;
 
 class GitRepository
 {
-	public $dir;
+	public
 
-	protected $items    = array();
+	$dir,
+	$branches;
+
+	protected $items = array();
 
 	const OBJ_NONE      = 0;
 	const OBJ_COMMIT    = 1;
@@ -72,6 +75,21 @@ class GitRepository
 
 				closedir($dh);
 			}
+		}
+
+		$this->branches = array();
+		$ddh = opendir(sprintf('%s/refs/heads', $this->dir));
+		if ($ddh !== FALSE)
+		{
+			while (false !== ($entry = readdir($ddh)))
+			{
+				if($entry != "." && $entry != "..")
+				{
+					$this->branches[] = $entry;
+				}
+			}
+
+			closedir($ddh);
 		}
 	}
 
@@ -302,7 +320,7 @@ class GitRepository
 			 * (and 1 is added each turn)
 			 * see sha1_file.c (get_delta_base)
 			 */
-			$pos    = 0;
+			$pos	= 0;
 			$offset = -1;
 			do
 			{
