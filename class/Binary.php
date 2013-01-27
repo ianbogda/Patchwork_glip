@@ -22,7 +22,7 @@
  * along with glip.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Pathchwork\Git;
+namespace Patchwork\Git;
 
 final class Binary
 {
