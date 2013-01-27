@@ -40,10 +40,13 @@ class GitTree extends GitObject
 			$pos = strpos($data, "\0", $start);
 			list($node->mode, $node->name) = explode(' ', substr($data, $start, $pos-$start), 2);
 
-			$node->mode		 = intval($node->mode, 8);
-			$node->is_dir	   = !!($node->mode & 040000);
+			$node->mode         = intval($node->mode, 8);
+			// alexgorbatchev :: http://www.raspberryginger.com/jbailey/minix/html/stat_8h.html
+			// added support for symlinks
+			$node->is_symlink   = (40960 == ($node->mode & 61440));
+			$node->is_dir       = !!($node->mode & 040000);
 			$node->is_submodule = (57344 == $node->mode);
-			$node->object	   = substr($data, $pos+1, 20);
+			$node->object       = substr($data, $pos+1, 20);
 
 			$start = $pos + 21;
 
