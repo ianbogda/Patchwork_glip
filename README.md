@@ -1,13 +1,9 @@
-Patchwork Git
-=============
+Patchwork glip
+==============
 
 This lib is an OOP interface for [Patchwork][1].
 
 It uses code from [glip][2] to provide an OOP interface for working with git repositories without git.
-
-
-Original glip
--------------
 
 > glip is a Git Library In PHP. It allows you to access bare git repositories from PHP scripts, even without having git installed. The project's homepage is located at (http://fimml.at/glip).
 >
