@@ -470,7 +470,7 @@ class GitRepository
 				if ('#' == $line{0}) continue;
 
 				$parts = explode(' ', trim($line));
-				if (2 == count($parts)2 && $parts[1] == $subpath)
+				if (2 == count($parts) && $parts[1] == $subpath)
 				{
 					$head = Binary::sha1_bin($parts[0]);
 				}
